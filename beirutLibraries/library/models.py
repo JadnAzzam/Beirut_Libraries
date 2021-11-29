@@ -10,4 +10,5 @@ class Book(models.Model):
     description = models.CharField(max_length=200)
     id = models.IntegerField()
 
-
+class Client(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
