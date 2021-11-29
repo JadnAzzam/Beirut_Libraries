@@ -10,5 +10,14 @@ class Book(models.Model):
     description = models.CharField(max_length=200)
     id = models.IntegerField()
 
-class Client(models.Model):
+    def __str__(self):
+        return self.title
+
+
+class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    id = models.IntegerField()
+    email = models.CharField(max_length = 100)
+    phoneNumber = models.CharField(max_length=8)
+    signUpDate = models.DateTimeField(auto_now_add = True)
+
