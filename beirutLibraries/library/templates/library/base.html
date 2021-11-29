@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+    <head>
+        <title>Beirut Libraries</title>
+    </head>
+=======
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -10,7 +15,15 @@
 </head>
 <body>
     {{block content}}
+>>>>>>> 0bc160534014a3c583ec71b0b18646c198c8fcf0
 
-    {{end block}}
-</body>
+    <body>
+        {% block content %}
+
+        {% endblock content %}
+    </body>
+
+    <footer>
+        <h2>This is a footer</h2>
+    </footer>
 </html>
