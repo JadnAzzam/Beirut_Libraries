@@ -1,4 +1,8 @@
-{{ block content }}
-  <h1></h1>
+{% extends 'base.html' %}
 
-{{ end block }}
+{% block content %}
+  <div style="border: 2px solid #000">
+    <h1>This is the main page</h1>
+  </div>
+
+{% endblock content %}
