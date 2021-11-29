@@ -9,3 +9,5 @@ class Book(models.Model):
     rating = models.IntegerField(min_value = 1, max_value = 5)
     description = models.CharField(max_length=200)
     id = models.IntegerField()
+
+
