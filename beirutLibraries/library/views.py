@@ -43,9 +43,9 @@ def register_user_views(request):
       first_name = form.cleaned_data.get('first_name')
       last_name = form.cleaned_data.get('last_name')
       username = form.cleaned_data.get('username')
-      user_taken = Student.objects.filter(name = username).count()
+      user_taken = Student.objects.filter(username = username).count()
       email = form.cleaned_data.get('email')
-      email_taken = Student.objects.filter(name = email).count()
+      email_taken = Student.objects.filter(email = email).count()
       if (user_taken != 0):
         messages.error(request,"Username taken, next time be creative!")
         return render(request, 'library/user_signup.html', {'form' : form})
