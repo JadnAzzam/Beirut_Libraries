@@ -55,8 +55,8 @@ class LibrarianForm(ModelForm):
 class CreateBookForm(forms.ModelForm):
     title        = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Book title"}))
     author       = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Author"}))
-    nbOfCopies   = models.IntegerField()
-    rating       = models.IntegerField()
+    nbOfCopies   = forms.IntegerField()
+    rating       = forms.IntegerField()
     description  = forms.CharField(required=False, widget = forms.Textarea(attrs={"placeholder": "Book description",}))
     class Meta:
         model = models.Book
