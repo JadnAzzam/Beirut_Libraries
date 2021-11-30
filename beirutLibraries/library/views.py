@@ -6,9 +6,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users
 from django.contrib.auth.models import Group
-from .models import Book, Student, Librarian, post, Lost
+from .models import Book, Student, Librarian
 from django.db import models
-from social import forms
+
 
 @unauthenticated_user
 def login_user_view(request):
