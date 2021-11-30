@@ -34,3 +34,12 @@ def logout_user_views(request):
   logout(request)
   list(messages.get_messages(request))
   return redirect('home')
+
+  @unauthenticated_user
+  def register_user_views(request):
+    if request.method == 'POST' :
+      form = RegisterUserForm(request.POST)
+      if form.is_valid():
+        username = form.cleaned_data.get('username')
+        current_user = Student.objects.filter(name = username).count()
+        email = form.cleaned_data.get('email')
