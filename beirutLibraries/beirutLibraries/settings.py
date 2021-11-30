@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os 
 from pathlib import Path
-import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,12 +56,8 @@ ROOT_URLCONF = 'beirutLibraries.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
         # 'DIRS': [BASE_DIR / 'templates'],
         'DIRS': [str(BASE_DIR.joinpath('templates'))],
-=======
-        'DIRS': [],
->>>>>>> 552a5675410c8a9def06e56fbb457e685b00233d
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
