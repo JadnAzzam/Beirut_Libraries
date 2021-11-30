@@ -19,7 +19,7 @@ def login_user_view(request):
         if user is not None:
             login(request,user)
             messages.info(request,f"You are now logged in as {username}")
-            return redirect('/')
+            return redirect('')
         else:
             messages.error(request, 'Invalid Username or Password.')
     else:
@@ -27,10 +27,10 @@ def login_user_view(request):
   form = AuthenticationForm()
   #returns the login page
   context = {'form':form}
-  return render(request,'main/login.html',context)
+  return render(request,'library/user_login.html',context)
 
 
-def logoutUser(request):
+def logout_user_views(request):
   logout(request)
   list(messages.get_messages(request))
-  return redirect('login')
+  return redirect('home')
