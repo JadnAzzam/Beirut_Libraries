@@ -1,0 +1,15 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+    <div>
+      <!-- FIX DATASE QUERIES -->
+      
+      <h1>{{object.title}}</h1>
+      <p>{% if object.description %} {{object.description}}
+          {% else %} Coming Soon {% endif %}</p>
+
+      <button><a href="./update">Update</a></button>
+      <button><a href="./delete">Delete</a></button>
+      <button><a href="../">Back</a></button>
+    </div>
+{% endblock content %}

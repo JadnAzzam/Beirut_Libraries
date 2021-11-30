@@ -1,0 +1,14 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+    <div>
+      <!-- FIX DATASE QUERIES -->
+      
+      <h1>Books in the database</h1>
+      <button><a href="./create/">Add Book</a></button>
+
+      {% for instance in object_list %}
+          <p>{{instance.id}} - <a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
+      {% endfor %}
+    </div>
+{% endblock content %}
