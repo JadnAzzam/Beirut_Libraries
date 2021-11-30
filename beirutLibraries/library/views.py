@@ -6,9 +6,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users
 from django.contrib.auth.models import Group
-from .models import Book, Student, Librarian, post, Lost
+from .models import Book, Student, Librarian
 from django.db import models
-from social import forms
 
 @unauthenticated_user
 def login_user_view(request):
@@ -26,8 +25,7 @@ def login_user_view(request):
             messages.error(request, 'Invalid Username or Password.')
     else:
         messages.error(request, "Invalid username or password.")
-  form = AuthenticationForm()
-  #returns the login page
+  form = AuthenticationForm() #returns form of login page 
   context = {'form':form}
   return render(request,'library/user_login.html',context)
 
@@ -67,4 +65,15 @@ def register_user_views(request):
           email = email,
         )
         messages.success(request, f"Account created successfully for {first_name}")
+        return redirect('user_login')
+
+    else:
+      
+        for msg in form.error_messages:
+          messages.error(request, f"{form.error_messages[msg]}")
+        
+        return render(request,'library/user_signup.html', {'form': form})     # returns signup page
+  
+  form = RegisterUserForm()
+  return render(request, 'library/user_signup.html', {'form' : form})
       
