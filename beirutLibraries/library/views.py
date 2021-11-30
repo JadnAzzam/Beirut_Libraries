@@ -64,5 +64,5 @@ def register_user_views(request):
           last_name = last_name,
           email = email,
         )
-        messages.success(request, f"Account created successfully for {first_name} ")
+        messages.success(request, f"Account created successfully for {first_name}")
       
