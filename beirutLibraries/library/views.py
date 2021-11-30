@@ -53,19 +53,19 @@ def register_user_views(request):
         messages.error(request,"This email already has an account.")
         return render(request, 'library/user_signup.html', {'form' : form})
       else:
-        user = form.save()
+        form.save()
 
-        group = Group.objects.get(name = 'student')
-        user.groups.add(group)
-        Student.objects.create(
-          user = user,
-          username = username,
-          first_name = first_name,
-          last_name = last_name,
-          email = email,
-        )
-        messages.success(request, f"Account created successfully for {first_name}")
-        return redirect('user_login')
+        # group = Group.objects.get(name = 'user')
+        # user.groups.add(group)
+        # Student.objects.create(
+        #   user = user,
+        #   username = username,
+        #   first_name = first_name,
+        #   last_name = last_name,
+        #   email = email,
+        # )
+        # messages.success(request, f"Account created successfully for {first_name}")
+        return redirect('../../')
 
     else:
       

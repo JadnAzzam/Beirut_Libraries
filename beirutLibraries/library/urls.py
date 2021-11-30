@@ -8,8 +8,8 @@ from django.conf import settings
 app_name = 'library'
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name = 'home_page'), name = 'home'),
-    path('login-user/', views.login_user_view, name = "login-user"),
+    path('', TemplateView.as_view(template_name = 'home_page.html'), name = 'home'),
+    path('login/', views.login_user_view, name = "login"),
     path('logout-user/', views.logout_user_views, name = "logout-user"),
     path('register-user/', views.register_user_views, name = "register-user"),
     # path('login-admin/', views.librarian_login, name = "login-librarian"),
