@@ -9,7 +9,6 @@ from django.contrib.auth.models import Group
 from .models import Book, Student, Librarian
 from django.db import models
 
-
 @unauthenticated_user
 def login_user_view(request):
   if request.method == "POST":
@@ -26,8 +25,7 @@ def login_user_view(request):
             messages.error(request, 'Invalid Username or Password.')
     else:
         messages.error(request, "Invalid username or password.")
-  form = AuthenticationForm()
-  #returns the login page
+  form = AuthenticationForm() #returns form of login page 
   context = {'form':form}
   return render(request,'library/user_login.html',context)
 
@@ -45,9 +43,9 @@ def register_user_views(request):
       first_name = form.cleaned_data.get('first_name')
       last_name = form.cleaned_data.get('last_name')
       username = form.cleaned_data.get('username')
-      user_taken = Student.objects.filter(name = username).count()
+      user_taken = Student.objects.filter(username = username).count()
       email = form.cleaned_data.get('email')
-      email_taken = Student.objects.filter(name = email).count()
+      email_taken = Student.objects.filter(email = email).count()
       if (user_taken != 0):
         messages.error(request,"Username taken, next time be creative!")
         return render(request, 'library/user_signup.html', {'form' : form})
@@ -66,5 +64,16 @@ def register_user_views(request):
           last_name = last_name,
           email = email,
         )
-        messages.success(request, f"Account created successfully for {first_name} ")
+        messages.success(request, f"Account created successfully for {first_name}")
+        return redirect('user_login')
+
+    else:
+      
+        for msg in form.error_messages:
+          messages.error(request, f"{form.error_messages[msg]}")
+        
+        return render(request,'library/user_signup.html', {'form': form})     # returns signup page
+  
+  form = RegisterUserForm()
+  return render(request, 'library/user_signup.html', {'form' : form})
       
