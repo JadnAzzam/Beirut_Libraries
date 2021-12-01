@@ -32,7 +32,6 @@ class Student(models.Model):
     phoneNumber = models.CharField(max_length=8)
     # signUpDate = models.DateTimeField(auto_now_add = True)
 
-
 class Librarian(models.Model):
     librarian = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     username = models.CharField(max_length = 100)
