@@ -1,5 +1,5 @@
 {% extends 'library/base.html' %}
-
+{% load static %}
 
 
 {% block title %}  
@@ -8,12 +8,12 @@ Beirut Libraries
 
 
 {% block content %}
-    <div>
-      <h1>Home Page</h1>
-      <a href="library/login-user/">User Login</a> <br>
-      <a href="library/register-user/">User Sign Up</a> <br>
-      <p>--------------</p><br>
-      <a href="library/login-admin/">Admin Login</a> <br>
-      <a href="library/register-admin/">Admin Sign Up</a> <br>
+    <div class="page-title">
+      <h1>Beirut Libraries</h1>  <br>
+      <a class="home-links" href="library/login-user/">User Login</a> 
+      <a class="home-links" href="library/register-user/">User Sign Up</a> <br>
+      <!-- <p>--------------</p><br> -->
+      <a class="home-links" href="library/login-admin/">Admin Login</a> 
+      <a class="home-links" href="library/register-admin/">Admin Sign Up</a> <br>
     </div>
 {% endblock content %}
