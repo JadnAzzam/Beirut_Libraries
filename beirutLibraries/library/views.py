@@ -231,41 +231,20 @@ def user_book_view(request, book_id):
 
 @login_required(login_url='login-user')
 def user_borrow_view(request,book_id):
-    book = get_object_or_404(Book, id=book_id)
-    issue_date = timezone.now()
-    copies = book.nbOfCopies-1
-    
-    book_issue = IssuedBook.objects.create(
-        issue_date=issue_date, book=book, student=request.user.student, nbOfCopies = copies
-    )
-    book = book_issue
-
-    messages.info(request, "Book has been issued.")
-    return redirect("../../")
+  book = get_object_or_404(Book, id=book_id)
+  issue_date = timezone.now()
 
 
+  book_issue = IssuedBook.objects.create(
+      issue_date=issue_date, book=book, student=request.student,
+  )
+  book = book_issue
 
-  # form = Book_IssueForm(request.POST or None)
-  # if form.is_valid():
-  #   form.save()
-  #   form = CreateBookForm()
-  # context = {
-  #     'form': form
-  # }
-  # return render(request, "library/create_book.html", context)
-
-  # obj = get_object_or_404(Book, id=book_id)
-  # if request.method == "POST":
-  #       #confirming delete
-  #   obj.delete()
-  #   return redirect("../../list")
-  # context={
-  #       "object" : obj,
-  # }
-  # return render(request, "library/delete_book.html",context)
+  messages.info(request, "Book has been issued.")
+  return redirect("../../")
 
 
 
 @login_required(login_url='login-user')
-def user_return_view(request,user_id, book_id):
+def user_return_view(request, book_id):
   return
