@@ -197,3 +197,7 @@ def book_update_view(request, book_id):
         'form': form
     }
     return render(request, "library/book_create.html", context)
+  
+  
+def testi(request):
+  return render(request, "library/test.html")

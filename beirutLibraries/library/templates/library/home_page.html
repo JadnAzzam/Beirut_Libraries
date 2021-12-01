@@ -3,17 +3,27 @@
 
 
 {% block title %}  
-Home Page
+Beirut Libraries
 {% endblock title %}
 
 
 {% block content %}
     <div>
-      <h1>Home Page</h1>
-      <a href="library/login-user">User Login</a> <br>
-      <a href="library/register-user">User Sign Up</a> <br>
-      <p>--------------</p><br>
-      <a href="library/login-admin">Admin Login</a> <br>
-      <a href="library/register-admin">Admin Sign Up</a> <br>
+      <h1 class="page-title">Beirut Libraries</h1> <br>
+
+      <div class="content">
+        <div class="box">
+          <a class="links" href="library/login-user">User Login</a> <br>
+          <a class="links" href="library/register-user">User Sign Up</a> <br>
+        </div>
+  
+        <!-- <p>--------------</p><br> --><br>
+        
+        <div class="box">
+          <a class="links" href="library/login-admin">Admin Login</a> <br>
+          <a class="links" href="library/register-admin">Admin Sign Up</a>
+        </div>
+      </div>
+      
     </div>
 {% endblock content %}
