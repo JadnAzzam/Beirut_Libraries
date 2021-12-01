@@ -10,7 +10,7 @@ from .models import Book, Student, Librarian
 from django.db import models
 
 @unauthenticated_user
-def login_user_views(request):
+def login_user_view(request):
   if request.method == "POST":
     form = AuthenticationForm(request = request, data = request.POST)
     if form.is_valid():
@@ -30,13 +30,13 @@ def login_user_views(request):
   return render(request,'library/user_login.html',context)
 
 
-def logout_user_views(request):
+def logout_user_view(request):
   logout(request)
   list(messages.get_messages(request))
   return redirect('home')
 
 @unauthenticated_user
-def register_user_views(request):
+def register_user_view(request):
   if request.method == 'POST' :
     form = RegisterUserForm(request.POST)
     if form.is_valid():
@@ -80,7 +80,7 @@ def register_user_views(request):
 
   ### Librarian login view
 @unauthenticated_user
-def login_librarian_views(request):
+def login_librarian_view(request):
   if request.method == "POST":
     form = AuthenticationForm(request = request, data = request.POST)
     if form.is_valid():
@@ -90,7 +90,7 @@ def login_librarian_views(request):
         if user is not None:
             login(request,user)
             messages.info(request,f"Access to the library databases as {username}")
-            return redirect('') ############# add views after login
+            return redirect('../list/') ############# add views after login
         else:
             messages.error(request, 'Invalid Username or Password.')
     else:
@@ -100,13 +100,14 @@ def login_librarian_views(request):
   return render(request,'library/admin_login.html',context)
 
 
-def logout_librarian_views(request):
+def logout_librarian_view(request):
   logout(request)
   list(messages.get_messages(request))
   return redirect('home')
 
+### Sign up admin
 @unauthenticated_user
-def register_librarian_views(request):
+def register_librarian_view(request):
   if request.method == 'POST' :
     form = RegisterLibrarianForm(request.POST)
     if form.is_valid():
@@ -147,3 +148,52 @@ def register_librarian_views(request):
   form = RegisterLibrarianForm()
   return render(request, 'library/admin_signup.html', {'form' : form})
       
+### List of Books
+def book_list_view(request):
+  queryset = Book.objects.all()   # list of objects # queryset = list(Book.objects.values('id'))  ||  Book.objects.all()  
+  context = {
+      "object_list": queryset
+  }
+  return render(request, "library/book_list.html", context)
+
+### Add Book
+def book_create_view(request):
+  form = CreateBookForm(request.POST or None)
+  if form.is_valid():
+    form.save()
+    form = CreateBookForm()
+  context = {
+      'form': form
+  }
+  return render(request, "library/create_book.html", context)
+
+### Display Book
+def book_detail_view(request, book_id):
+  obj = get_object_or_404(Book, id = book_id)
+  context = {
+      'object': obj,
+  }
+  return render(request, "library/book_detail.html", context)
+
+### Delete Book
+def book_delete_view(request, book_id):
+  obj = get_object_or_404(Book, id=book_id)
+  if request.method == "POST":
+        #confirming delete
+    obj.delete()
+    return redirect('../../')
+  context={
+        "object" : obj,
+  }
+  return render(request, "library/book_delete.html",context)
+
+### Update Book
+def book_update_view(request, book_id):
+    obj = get_object_or_404(Book, id=book_id)
+    form = BookForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+    context = {
+        'form': form
+    }
+    return render(request, "library/book_create.html", context)
