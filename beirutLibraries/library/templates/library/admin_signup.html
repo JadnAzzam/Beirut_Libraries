@@ -1,17 +1,17 @@
 {% extends 'library/base.html' %}
 
-
 {% block title %}  
-Admin Login
+Admin Sign Up
 {% endblock title %}
 
 {% block content %}
     <div>
-      <h2>Log In for admins</h2>
+       <!-- Link database queries -->
+      <h2>Sign up</h2>
       <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Log In</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
 {% endblock content %}
