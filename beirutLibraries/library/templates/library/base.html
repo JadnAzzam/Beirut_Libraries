@@ -1,7 +1,8 @@
-
+ 
+ 
+  
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en"> 
     <head>
         {% load static %}
         <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -10,21 +11,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}  {% endblock title %}</title>
         
-    </head>
-
-    <body>
-
+    </head> 
+    <body> 
         <!-- <div class="header">
                 <h1>My Website</h1>
                 <p>Library System</p>
-        </div> -->
-
+        </div> --> 
         <div class="page-container">
             <div class="content-wrap">
                 {% block content %}
                 {% endblock content %}
             </div>
-        
             <!-- footer -->
             <footer class='footer'>
                 <div class="footer-content">
@@ -43,8 +40,7 @@
                             <a href="#" class="footer--links"><li>Team</li></a> <br>
                             <!-- <a href="#" class="links"><li>Gllery</li></a> -->
                             <a href="#" class="footer--links"><li>Terms and Conditions</li></a>
-                        </ul>
-
+                        </ul> 
                     </div>
                     <div class="footer-section contact-form">
                         <h2>Contact Us</h2>
@@ -60,8 +56,7 @@
                             <!-- <a class="footer--links" href="#"><i class="fab fa-youtube"></i>youtube</a> -->
                         </div>
                     </div>
-                </div>
-
+                </div> 
                 <div class="footer-bottom">
                     &copy; 2021 | Coding Journey
                 </div>
@@ -69,6 +64,4 @@
             <!-- // footer -->
         </div>
     </body>
-</html>
-
-
+</html>  
