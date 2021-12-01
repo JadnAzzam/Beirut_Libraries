@@ -8,7 +8,24 @@ Beirut Libraries
 {% block content %}
     <div>
       Hi {{ user.username }}!
-      <p><a href="{% url 'library:logout' %}">Log Out</a></p>
-      <!-- <p><a href="{% url 'password_reset' %}">Reset Password</a></p> -->
+
+      <button><a href="{% url 'library:logout-user' %}">Logout</a></button>
+
+      <br>
+      
+      <div>
+      <h3>Issued books:</h3><br>
+      {% for books in issued_book %}
+          <p>{{book.id}} - <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+      {% endfor %}
+      </div>
+
+      <br>
+
+      <div>
+      {% for instance in object_list %}
+          <p>{{instance.id}} - <a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
+      {% endfor %}
+      </div>
     </div>
 {% endblock content %}

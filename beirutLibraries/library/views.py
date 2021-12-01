@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-from .models import Book, Student, Librarian
+from .models import Book, Student, Librarian, IssuedBook
 from django.db import models
 
 # @unauthenticated_user
@@ -19,7 +19,7 @@ def login_user_view(request):
         if user is not None:
             login(request,user)
             messages.info(request,f"You are now logged in as {username}")
-            return redirect('')  ############# add views after login
+            return redirect('../user-page/')  ############# add views after login
         else:
             messages.error(request, 'Invalid Username or Password.')
     else:
@@ -89,7 +89,7 @@ def login_librarian_view(request):
         if user is not None:
             login(request,user)
             messages.info(request,f"Access to the library databases as {username}")
-            return redirect('../list/') ############# add views after login
+            return redirect('../list/') 
         else:
             messages.error(request, 'Invalid Username or Password.')
     else:
@@ -208,8 +208,10 @@ def book_update_view(request, book_id):
 @login_required(login_url='login-user')
 def user_page_view(request):
   queryset = Book.objects.all()   # list of objects # queryset = list(Book.objects.values('id'))  ||  Book.objects.all()  
+  issued_book = IssuedBook.objects.all()
   context = {
-      "object_list": queryset
+      "object_list": queryset,
+      "issued_book": issued_book,
   }
   return render(request, "library/user_page.html", context)
 
@@ -224,12 +226,18 @@ def user_book_view(request, book_id):
   return render(request, "library/user_book_detail.html", context)
 
 
-
+######################
 
 @login_required(login_url='login-user')
 def user_borrow_view(request,user_id, book_id):
-  return
-
+  form = CreateBookForm(request.POST or None)
+  if form.is_valid():
+    form.save()
+    form = CreateBookForm()
+  context = {
+      'form': form
+  }
+  return render(request, "library/create_book.html", context)
 
 
 
