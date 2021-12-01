@@ -13,27 +13,34 @@
         
     </head>
 
-    <body class="page-wrapper">
+    <body>
 
-        {% block content %}
+        <!-- <div class="header">
+                <h1>My Website</h1>
+                <p>Library System</p>
+        </div> -->
 
-        {% endblock content %}
+        <div class="page-container">
+            <div class="content-wrap">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        
+            <!-- footer -->
+            <footer class='footer'>
+                <div class="footer-content">
+                    <div class="footer-section about"></div>
+                    <div class="footer-section links"></div>
+                    <div class="footer-section contact-form"></div>
+                </div>
+
+                <div class="footer-bottom">
+                    &copy; 2021 | Coding Journey
+                </div>
+            </footer>
+            <!-- // footer -->
+        </div>
     </body>
-
-    <!-- footer -->
-    <div class='footer'>
-        <div class="footer-content">
-            <div class="footer-section about"></div>
-            <div class="footer-section links"></div>
-            <div class="footer-section contact-form"></div>
-        </div>
-
-        <div class="footer-bottom">
-            &copy; codingpoets.com | Designed by Awa Melvine
-        </div>
-    </div>
-
-    <!-- // footer -->
 </html>
 
 
