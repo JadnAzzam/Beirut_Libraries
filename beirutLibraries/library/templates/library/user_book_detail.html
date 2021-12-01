@@ -2,14 +2,14 @@
 
 {% block content %}
     <div>
-      <!-- FIX DATASE QUERIES -->
       
       <h1>{{object.title}}</h1>
       <p>{% if object.description %} {{object.description}}
           {% else %} Coming Soon {% endif %}</p>
+          <p>{{object.author}}</p>
+          <p>Rating: {{object.rating}}</p>
 
-      <button><a href="./update">Update</a></button>
-      <button><a href="./delete">Delete</a></button>
+      <button><a href="./borrow">Borrow</a></button>
       <button><a href="../list">Back</a></button>
     </div>
 {% endblock content %}

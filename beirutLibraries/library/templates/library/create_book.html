@@ -9,7 +9,7 @@
     <form action="." method="POST"> {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" value="Save" />
-      <button><a href="../list">Done</a></button>
+      <button><a href="{% url 'library:book-list' %}">Done</a></button>
     </form>
   </div>
 
