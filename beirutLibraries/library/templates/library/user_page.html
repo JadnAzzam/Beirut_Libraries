@@ -14,17 +14,18 @@ Beirut Libraries
       <br>
       
       <div>
-      <h3>Issued books:</h3><br>
+      <h3>Issued books:</h3>
       {% for books in issued_book %}
-          <p>{{book.id}} - <a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+          <p>{{book.id}} - <a href="{{ book.get_user_url }}">{{ book.title }} </a></p>
       {% endfor %}
       </div>
 
       <br>
 
       <div>
+        <h3>Books available:</h3>
       {% for instance in object_list %}
-          <p>{{instance.id}} - <a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
+          <p>{{instance.id}} - <a href="{{ instance.get_user_url }}">{{ instance.title }} - Number of Copies {{instance.nbOfCopies}}</a></p>
       {% endfor %}
       </div>
     </div>

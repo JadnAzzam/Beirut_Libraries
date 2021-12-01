@@ -8,7 +8,6 @@ from django.conf import settings
 app_name = 'library'
 
 urlpatterns = [
-    path('test/', views.testi),
     path('', TemplateView.as_view(template_name = 'home_page.html'), name = 'home'),
     path('login-user/', views.login_user_view, name = "login-user"),
     path('logout-user/', views.logout_user_view, name = "logout-user"),
@@ -22,9 +21,9 @@ urlpatterns = [
     path('<int:book_id>/delete/', views.book_delete_view, name='book-delete'),
     path('<int:book_id>/update/', views.book_update_view, name='book-update'),
     path('user-page/', views.user_page_view, name = 'user-page'),
-    path('<int:book_id>/', views.user_book_view, name = 'user-book-detail'),
-    path('<int:book_id>/borrow/', views.user_borrow_view, name = 'borrow-book'),
-    path('<int:book_id>/return/', views.user_return_view, name = 'return-book'),
+    path('view/<int:book_id>/', views.user_book_view, name = 'user-book-detail'),
+    path('view/<int:book_id>/borrow/', views.user_borrow_view, name = 'borrow-book'),
+    path('view/<int:book_id>/return/', views.user_return_view, name = 'return-book'),
 
 ] 
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

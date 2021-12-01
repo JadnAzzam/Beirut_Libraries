@@ -20,6 +20,9 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse("library:book-detail", kwargs={"book_id": self.id})
 
+    def get_user_url(self):
+        return reverse("library:user-book-detail", kwargs={"book_id": self.id})
+
 
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)

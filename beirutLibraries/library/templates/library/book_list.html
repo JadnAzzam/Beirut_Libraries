@@ -9,7 +9,7 @@
       <button><a href="../create/">Add Book</a></button>
 
       {% for instance in object_list %}
-          <p>{{instance.id}} - <a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
+          <p>{{instance.id}} - <a href="{{ instance.get_absolute_url }}">{{ instance.title }} - Number of Copies {{instance.nbOfCopies}}</a></p>
       {% endfor %}
     </div>
 {% endblock content %}

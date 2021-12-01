@@ -202,13 +202,6 @@ def book_update_view(request, book_id):
     context = {
         'form': form
     }
-<<<<<<< HEAD
-    return render(request, "library/book_create.html", context)
-  
-  
-def testi(request):
-  return render(request, "library/test.html")
-=======
     return render(request, "library/create_book.html", context)
 
 ### User after login
@@ -261,4 +254,3 @@ def user_borrow_view(request,user_id, book_id):
 @login_required(login_url='login-user')
 def user_return_view(request,user_id, book_id):
   return
->>>>>>> b16462c3f2cc9913d7bc61e88dcc659c35d48e3e
