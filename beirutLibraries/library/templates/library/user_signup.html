@@ -1,13 +1,17 @@
 {% extends 'library/base.html' %}
 
+{% block title %}  
+Beirut Libraries 
+{% endblock title %}
+
 {% block content %}
-    <div>
+    <div class="">
        <!-- Link database queries -->
-      <h2>Sign up</h2>
+      <h2 class="page-title">Sign up</h2> <br><br>
       <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Sign Up</button>
+        <button type="submit" class="page-title">Sign Up</button>
       </form>
     </div>
 {% endblock content %}
