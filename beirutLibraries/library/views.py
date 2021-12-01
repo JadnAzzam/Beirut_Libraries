@@ -147,8 +147,11 @@ def register_librarian_view(request):
   
   form = RegisterLibrarianForm()
   return render(request, 'library/admin_signup.html', {'form' : form})
-      
+
+
+
 ### List of Books
+@login_required(login_url='login-librarian')
 def book_list_view(request):
   queryset = Book.objects.all()   # list of objects # queryset = list(Book.objects.values('id'))  ||  Book.objects.all()  
   context = {
@@ -157,6 +160,7 @@ def book_list_view(request):
   return render(request, "library/book_list.html", context)
 
 ### Add Book
+@login_required(login_url='login-librarian')
 def book_create_view(request):
   form = CreateBookForm(request.POST or None)
   if form.is_valid():
@@ -168,6 +172,7 @@ def book_create_view(request):
   return render(request, "library/create_book.html", context)
 
 ### Display Book
+@login_required(login_url='login-librarian')
 def book_detail_view(request, book_id):
   obj = get_object_or_404(Book, id = book_id)
   context = {
@@ -176,6 +181,7 @@ def book_detail_view(request, book_id):
   return render(request, "library/book_detail.html", context)
 
 ### Delete Book
+@login_required(login_url='login-librarian')
 def book_delete_view(request, book_id):
   obj = get_object_or_404(Book, id=book_id)
   if request.method == "POST":
@@ -188,6 +194,7 @@ def book_delete_view(request, book_id):
   return render(request, "library/book_delete.html",context)
 
 ### Update Book
+@login_required(login_url='login-librarian')
 def book_update_view(request, book_id):
     obj = get_object_or_404(Book, id=book_id)
     form = BookForm(request.POST or None, instance = obj)
@@ -197,3 +204,36 @@ def book_update_view(request, book_id):
         'form': form
     }
     return render(request, "library/book_create.html", context)
+
+### User after login
+@login_required(login_url='login-user')
+def user_page_view(request):
+  queryset = Book.objects.all()   # list of objects # queryset = list(Book.objects.values('id'))  ||  Book.objects.all()  
+  context = {
+      "object_list": queryset
+  }
+  return render(request, "library/user_page.html", context)
+
+
+### 
+@login_required(login_url='login-user')
+def user_book_view(request, book_id):
+  obj = get_object_or_404(Book, id = book_id)
+  context = {
+      'object': obj,
+  }
+  return render(request, "library/user_book_detail.html", context)
+
+
+
+
+@login_required(login_url='login-user')
+def user_borrow_view(request, book_id):
+  return
+
+
+
+
+@login_required(login_url='login-user')
+def user_return_view(request, book_id):
+  return

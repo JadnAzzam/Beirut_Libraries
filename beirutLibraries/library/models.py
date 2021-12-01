@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from datetime import datetime,timedelta
 
 # variables of a book
 class Book(models.Model):
@@ -36,3 +37,15 @@ class Librarian(models.Model):
     email = models.CharField(max_length = 100)
     phoneNumber = models.CharField(max_length=8)
     # signUpDate = models.DateTimeField(auto_now_add = True)
+
+def get_return_date():
+        return datetime.today() + timedelta(days=15)
+
+class IssuedBook(models.Model):
+    student = models.ForeignKey(Student, on_delete = models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    issue_date = models.DateTimeField(auto_now=True)
+    return_date = models.DateTimeField(default=get_return_date())
+
+    def __str__(self):
+        return self.Student.username + " borrowed " + self.Book.title

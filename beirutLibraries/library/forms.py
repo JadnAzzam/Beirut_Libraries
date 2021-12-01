@@ -76,3 +76,8 @@ class BookForm(forms.ModelForm):
         exclude = ['id']
 
 
+class Book_IssueForm(forms.ModelForm):
+    class Meta:
+        model=models.IssuedBook
+        exclude = ['issue_date', 'return_date']
+
