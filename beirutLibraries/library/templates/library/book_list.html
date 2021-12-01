@@ -5,10 +5,11 @@
       <!-- FIX DATASE QUERIES -->
       
       <h1>Books in the database</h1>
+      <button><a href="../logout-admin/">Logout</a></button>
       <button><a href="../create/">Add Book</a></button>
 
       {% for instance in object_list %}
-          <p>{{instance.id}} - <a href="../{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
+          <p>{{instance.id}} - <a href="{{ instance.get_absolute_url }}">{{ instance.title }}</a></p>
       {% endfor %}
     </div>
 {% endblock content %}

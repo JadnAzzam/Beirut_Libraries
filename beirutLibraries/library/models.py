@@ -18,7 +18,7 @@ class Book(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("book:book-detail", kwargs={"book_id": self.id})
+        return reverse("library:book-detail", kwargs={"book_id": self.id})
 
 
 class Student(models.Model):

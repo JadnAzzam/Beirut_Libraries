@@ -8,7 +8,7 @@ Beirut Libraries
 {% block content %}
     <div>
       Hi {{ user.username }}!
-      <p><a href="{% url 'logout' %}">Log Out</a></p>
-      <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+      <p><a href="{% url 'library:logout' %}">Log Out</a></p>
+      <!-- <p><a href="{% url 'password_reset' %}">Reset Password</a></p> -->
     </div>
 {% endblock content %}

@@ -4,12 +4,11 @@ from .forms import RegisterUserForm, RegisterLibrarianForm, UserForm, LibrarianF
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .decorators import unauthenticated_user, allowed_users
 from django.contrib.auth.models import Group
 from .models import Book, Student, Librarian
 from django.db import models
 
-@unauthenticated_user
+# @unauthenticated_user
 def login_user_view(request):
   if request.method == "POST":
     form = AuthenticationForm(request = request, data = request.POST)
@@ -35,7 +34,7 @@ def logout_user_view(request):
   list(messages.get_messages(request))
   return redirect('home')
 
-@unauthenticated_user
+# @unauthenticated_user
 def register_user_view(request):
   if request.method == 'POST' :
     form = RegisterUserForm(request.POST)
@@ -79,7 +78,7 @@ def register_user_view(request):
 
 
   ### Librarian login view
-@unauthenticated_user
+# @unauthenticated_user
 def login_librarian_view(request):
   if request.method == "POST":
     form = AuthenticationForm(request = request, data = request.POST)
@@ -106,7 +105,7 @@ def logout_librarian_view(request):
   return redirect('home')
 
 ### Sign up admin
-@unauthenticated_user
+# @unauthenticated_user
 def register_librarian_view(request):
   if request.method == 'POST' :
     form = RegisterLibrarianForm(request.POST)
@@ -187,11 +186,11 @@ def book_delete_view(request, book_id):
   if request.method == "POST":
         #confirming delete
     obj.delete()
-    return redirect('../../')
+    return redirect("../../list")
   context={
         "object" : obj,
   }
-  return render(request, "library/book_delete.html",context)
+  return render(request, "library/delete_book.html",context)
 
 ### Update Book
 @login_required(login_url='login-librarian')
@@ -203,7 +202,7 @@ def book_update_view(request, book_id):
     context = {
         'form': form
     }
-    return render(request, "library/book_create.html", context)
+    return render(request, "library/create_book.html", context)
 
 ### User after login
 @login_required(login_url='login-user')
@@ -228,12 +227,12 @@ def user_book_view(request, book_id):
 
 
 @login_required(login_url='login-user')
-def user_borrow_view(request, book_id):
+def user_borrow_view(request,user_id, book_id):
   return
 
 
 
 
 @login_required(login_url='login-user')
-def user_return_view(request, book_id):
+def user_return_view(request,user_id, book_id):
   return
