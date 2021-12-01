@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # variables of a book
 class Book(models.Model):
@@ -15,6 +16,9 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("book:book-detail", kwargs={"book_id": self.id})
+
 
 class Student(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
@@ -27,6 +31,7 @@ class Student(models.Model):
 
 class Librarian(models.Model):
     librarian = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    username = models.CharField(max_length = 100)
     id = models.IntegerField(primary_key=True)
     email = models.CharField(max_length = 100)
     phoneNumber = models.CharField(max_length=8)
