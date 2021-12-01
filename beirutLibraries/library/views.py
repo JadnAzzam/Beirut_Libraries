@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from .forms import RegisterUserForm, RegisterLibrarianForm, UserForm, LibrarianForm, CreateBookForm, BookForm
+from .forms import Book_IssueForm, RegisterUserForm, RegisterLibrarianForm, UserForm, LibrarianForm, CreateBookForm, BookForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -237,7 +237,7 @@ def user_book_view(request, book_id):
 
 @login_required(login_url='login-user')
 def user_borrow_view(request,user_id, book_id):
-  form = CreateBookForm(request.POST or None)
+  form = Book_IssueForm(request.POST or None)
   if form.is_valid():
     form.save()
     form = CreateBookForm()
@@ -245,6 +245,16 @@ def user_borrow_view(request,user_id, book_id):
       'form': form
   }
   return render(request, "library/create_book.html", context)
+
+  # obj = get_object_or_404(Book, id=book_id)
+  # if request.method == "POST":
+  #       #confirming delete
+  #   obj.delete()
+  #   return redirect("../../list")
+  # context={
+  #       "object" : obj,
+  # }
+  # return render(request, "library/delete_book.html",context)
 
 
 
